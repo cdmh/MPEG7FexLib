@@ -386,7 +386,7 @@ void vatomdesign()
 	double (*buf)=new double [3*180];
 	double a,x,cnt;
 
-	a=15./sqrt(2.*log(2));
+	a=15./sqrt(2.*log(2.));
 	cnt=89.5;
 
 	for(i=0;i<180;i++)
@@ -418,7 +418,7 @@ void hatomdesign()
 
 
 	for(k=0;k<5;k++)
-		par[k]=(BW[k]/2.)/(sqrt(2.*log(2)));
+		par[k]=(BW[k]/2.)/(sqrt(2.*log(2.)));
 
 	for(k=0;k<5;k++)
 	{

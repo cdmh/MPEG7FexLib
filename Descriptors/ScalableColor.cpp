@@ -135,7 +135,7 @@ float ScalableColorDescriptor::distance(ScalableColorDescriptor* scd)
     float dist = 0.0f;
 	for( int i = 0; i < m_NumberOfCoefficients; i++ )
 	{
-		dist += abs( m_Sign[i]*m_ScalableHistogram[i] - scd->m_Sign[i]*scd->m_ScalableHistogram[i] );
+		dist += abs( (long)(m_Sign[i]*m_ScalableHistogram[i] - scd->m_Sign[i]*scd->m_ScalableHistogram[i]) );
 	}
     return dist;
 }
