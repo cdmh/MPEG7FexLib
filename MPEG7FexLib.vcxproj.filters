@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\AddressLib">
+      <UniqueIdentifier>{b78e5284-fb1a-445b-92bb-55d94823b392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AddressLib">
+      <UniqueIdentifier>{e52813c6-9b1e-4cac-8fb5-df2be53ffd09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Descriptors">
+      <UniqueIdentifier>{c7bffea6-217f-4c30-838e-5bfb56633a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Descriptors">
+      <UniqueIdentifier>{0b1d2b6c-d3a2-49e5-a19d-4473ab890288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Extraction">
+      <UniqueIdentifier>{acb4c8b9-45ff-41dd-b2b9-bf659998ea88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Extraction">
+      <UniqueIdentifier>{4aedc41e-c428-43d3-97b6-e3772f693532}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Convert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Feature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddressLib\address.c">
+      <Filter>Source Files\AddressLib</Filter>
+    </ClCompile>
+    <ClCompile Include="AddressLib\inter.c">
+      <Filter>Source Files\AddressLib</Filter>
+    </ClCompile>
+    <ClCompile Include="AddressLib\intra.c">
+      <Filter>Source Files\AddressLib</Filter>
+    </ClCompile>
+    <ClCompile Include="AddressLib\nhood.c">
+      <Filter>Source Files\AddressLib</Filter>
+    </ClCompile>
+    <ClCompile Include="AddressLib\vopio.c">
+      <Filter>Source Files\AddressLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\ColorLayout.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\ColorQuant.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\ColorSpace.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\ColorStructure.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\ContourShape.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\DominantColor.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\EdgeHist.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\FaceRecognition.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\HomoTexture.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\RegionShape.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Descriptors\ScalableColor.cpp">
+      <Filter>Source Files\Descriptors</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\ColorLayoutExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\ColorSpaceExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\ColorStructureExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\ContourShapeExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\DominantColorExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\EdgeHistExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\FaceRecognitionExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\GoFGoPColorExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\homo_texture_extractor.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\HomoTextureExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\RegionShapeExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\ScalableColorExtraction.cpp">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+    <ClCompile Include="Extraction\imgutil.c">
+      <Filter>Source Files\Extraction</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Convert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Feature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddressLib\vopio.h">
+      <Filter>Header Files\AddressLib</Filter>
+    </ClInclude>
+    <ClInclude Include="AddressLib\address.h">
+      <Filter>Header Files\AddressLib</Filter>
+    </ClInclude>
+    <ClInclude Include="AddressLib\inter.h">
+      <Filter>Header Files\AddressLib</Filter>
+    </ClInclude>
+    <ClInclude Include="AddressLib\intra.h">
+      <Filter>Header Files\AddressLib</Filter>
+    </ClInclude>
+    <ClInclude Include="AddressLib\momusys.h">
+      <Filter>Header Files\AddressLib</Filter>
+    </ClInclude>
+    <ClInclude Include="AddressLib\nhood.h">
+      <Filter>Header Files\AddressLib</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\ScalableColor.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\ColorLayout.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\ColorQuant.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\ColorSpace.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\ColorStructure.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\ContourShape.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\DominantColor.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\EdgeHist.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\FaceRecognition.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\HomoTexture.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptors\RegionShape.h">
+      <Filter>Header Files\Descriptors</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\ColorLayoutExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\ColorSpaceExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\ColorStructureExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\ContourShapeExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\DominantColorExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\EdgeHistExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\EigenFaceData.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\FaceRecognitionExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\GoFGoPColorExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\homo_texture_extractor.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\HomoTextureExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\imgutil.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\RegionShapeExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+    <ClInclude Include="Extraction\ScalableColorExtraction.h">
+      <Filter>Header Files\Extraction</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
