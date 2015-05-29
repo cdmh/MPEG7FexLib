@@ -38,10 +38,10 @@
 #define __ColorSpace__
 
 
-typedef enum {RGB,YCRCB,HSV,HMMD,LinearMatrix,Monochrome} ColorSpaceType;
 
 namespace XM
 {
+typedef enum {RGB,YCRCB,HSV,HMMD,LinearMatrix,Monochrome} ColorSpaceType;
 
 class ColorSpaceDescriptor
 {
