@@ -46,11 +46,11 @@ namespace XM
 #define ART_ANGULAR	12
 #define ART_RADIAL 	3
 
-class RegionShapeDescriptor
+class RegionShapeDescriptor final
 {
 public:
 	RegionShapeDescriptor();
-	virtual ~RegionShapeDescriptor();
+	~RegionShapeDescriptor();
 
 	// Accesssor methods
 	bool SetElement(int p, int r, char value);
@@ -61,8 +61,8 @@ public:
     // to zero
 	void resetDescriptor();
 
-	//virtual unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
-	//virtual unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
+	//unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
+	//unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
 
 private:
 	// actual values:

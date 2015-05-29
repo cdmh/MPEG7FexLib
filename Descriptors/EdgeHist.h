@@ -16,11 +16,11 @@ typedef	struct Edge_Histogram_Descriptor
 } EHD;
 
 
-class EdgeHistogramDescriptor
+class EdgeHistogramDescriptor final
 {
 public:
   EdgeHistogramDescriptor();
-  virtual ~EdgeHistogramDescriptor();
+  ~EdgeHistogramDescriptor();
 
   // Accesssor methods
   unsigned long GetSize();
@@ -40,8 +40,8 @@ public:
   float distance(EdgeHistogramDescriptor* ehd);
   float distanceNorm(EdgeHistogramDescriptor* ehd);
 
-  //virtual unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
-  //virtual unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
+  //unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
+  //unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
 
 public:
   // actual values:

@@ -40,11 +40,11 @@
 namespace XM
 {
 
-class ColorStructureDescriptor
+class ColorStructureDescriptor final
 {
 public:
 	ColorStructureDescriptor();
-    virtual ~ColorStructureDescriptor();
+    ~ColorStructureDescriptor();
 
 	unsigned long GetSize(void);
 	unsigned long SetSize(unsigned long size);
@@ -53,8 +53,8 @@ public:
 
 	float distance(ColorStructureDescriptor* csd);
 
-	//virtual unsigned long ExportDDL( GenericDSInterfaceABC *aParentDescription);
-	//virtual unsigned long ImportDDL( GenericDSInterfaceABC *aDescription);
+	//unsigned long ExportDDL( GenericDSInterfaceABC *aParentDescription);
+	//unsigned long ImportDDL( GenericDSInterfaceABC *aDescription);
 
 public:
 	unsigned long* m_Data;

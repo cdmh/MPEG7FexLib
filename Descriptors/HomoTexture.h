@@ -41,7 +41,7 @@
 namespace XM
 {
 
-class HomogeneousTextureDescriptor
+class HomogeneousTextureDescriptor final
 {
 public:
     HomogeneousTextureDescriptor(bool endevFlag = true);
@@ -59,8 +59,8 @@ public:
 
     void Print();
 
-    //virtual unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
-    //virtual unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
+    //unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
+    //unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
 
 public:
     bool energydeviationflag;

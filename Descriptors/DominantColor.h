@@ -51,39 +51,39 @@ typedef struct DominantColor
   int m_ColorVariance[3];	// MPEG-7 values: 0,1 (1 bit)
 } DOMCOL;
 
-class DominantColorDescriptor
+class DominantColorDescriptor final
 {
 public:
 
   DominantColorDescriptor();
-  virtual ~DominantColorDescriptor();
+  ~DominantColorDescriptor();
 
   // accessor methods
-  virtual ColorQuantizerDescriptor* GetColorQuantizerDescriptor();
-  virtual unsigned long SetColorQuantizerDescriptor(ColorQuantizerDescriptor *);
-  virtual ColorSpaceDescriptor* GetColorSpaceDescriptor();
-  virtual unsigned long SetColorSpaceDescriptor(ColorSpaceDescriptor *);
+  ColorQuantizerDescriptor* GetColorQuantizerDescriptor();
+  unsigned long SetColorQuantizerDescriptor(ColorQuantizerDescriptor *);
+  ColorSpaceDescriptor* GetColorSpaceDescriptor();
+  unsigned long SetColorSpaceDescriptor(ColorSpaceDescriptor *);
 
-  virtual int GetDominantColorsNumber();
-  virtual bool GetColorSpacePresent() {return m_ColorSpacePresent;};
-  virtual bool GetColorQuantizationPresent() {return m_ColorQuantizationPresent;};
-  virtual bool GetVariancePresent() {return m_VariancePresent;};
-  virtual int GetSpatialCoherency();
-  virtual DOMCOL* GetDominantColors();
+  int GetDominantColorsNumber();
+  bool GetColorSpacePresent() {return m_ColorSpacePresent;};
+  bool GetColorQuantizationPresent() {return m_ColorQuantizationPresent;};
+  bool GetVariancePresent() {return m_VariancePresent;};
+  int GetSpatialCoherency();
+  DOMCOL* GetDominantColors();
 
-  virtual void SetDominantColorsNumber(int dc_number);
-  virtual void SetColorSpacePresent(bool colspcpres){ m_ColorSpacePresent = colspcpres; }
-  virtual void SetColorQuantizationPresent(bool colquantpres){ m_ColorQuantizationPresent = colquantpres; }
-  virtual void SetVariancePresent(bool varpres) { m_VariancePresent = varpres; }
-  virtual void SetSpatialCoherency(int sc);
-  virtual void SetDominantColors(int *percents, int **colors, int **variances);
+  void SetDominantColorsNumber(int dc_number);
+  void SetColorSpacePresent(bool colspcpres){ m_ColorSpacePresent = colspcpres; }
+  void SetColorQuantizationPresent(bool colquantpres){ m_ColorQuantizationPresent = colquantpres; }
+  void SetVariancePresent(bool varpres) { m_VariancePresent = varpres; }
+  void SetSpatialCoherency(int sc);
+  void SetDominantColors(int *percents, int **colors, int **variances);
 
-  virtual void resetDescriptor();
+  void resetDescriptor();
 
-  virtual void Print();
+  void Print();
 
-  //virtual unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
-  //virtual unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
+  //unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
+  //unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
 
 private:
 

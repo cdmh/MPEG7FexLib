@@ -88,29 +88,29 @@ public:
   double x, y;
 };
 
-class ContourShapeDescriptor
+class ContourShapeDescriptor final
 {
 public:
 	ContourShapeDescriptor();
-	virtual ~ContourShapeDescriptor();
+	~ContourShapeDescriptor();
 
 	// accessor methods
-	virtual void SetNoOfPeaks(unsigned char cPeaks);
-	virtual unsigned char GetNoOfPeaks() const;
-	virtual void SetGlobalCurvature(unsigned long lC, unsigned long lE);
-	virtual void GetGlobalCurvature(unsigned long &lC, unsigned long &lE) const;
-	virtual void SetPrototypeCurvature(unsigned long lC, unsigned long lE);
-	virtual void GetPrototypeCurvature(unsigned long &lC, unsigned long &lE) const;
-	virtual void SetHighestPeakY(unsigned short iHigh);
-	virtual unsigned short GetHighestPeakY() const;
-	virtual void SetPeak(unsigned char cIndex, unsigned short iX, unsigned short iY);
-	virtual void GetPeak(unsigned char cIndex, unsigned short &iX, unsigned short &iY);
+	void SetNoOfPeaks(unsigned char cPeaks);
+	unsigned char GetNoOfPeaks() const;
+	void SetGlobalCurvature(unsigned long lC, unsigned long lE);
+	void GetGlobalCurvature(unsigned long &lC, unsigned long &lE) const;
+	void SetPrototypeCurvature(unsigned long lC, unsigned long lE);
+	void GetPrototypeCurvature(unsigned long &lC, unsigned long &lE) const;
+	void SetHighestPeakY(unsigned short iHigh);
+	unsigned short GetHighestPeakY() const;
+	void SetPeak(unsigned char cIndex, unsigned short iX, unsigned short iY);
+	void GetPeak(unsigned char cIndex, unsigned short &iX, unsigned short &iY);
 
 	//print the values
-	virtual void Print();
+	void Print();
 
-	//virtual unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
-	//virtual unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
+	//unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
+	//unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
 
 private:
 

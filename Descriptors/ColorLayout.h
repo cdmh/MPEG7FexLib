@@ -41,15 +41,15 @@
 namespace XM
 {
 
-class ColorLayoutDescriptor
+class ColorLayoutDescriptor final
 {
 public:
 	ColorLayoutDescriptor(int numYCoef = 6, int numCCoef = 3 );
-	virtual ~ColorLayoutDescriptor();
+	~ColorLayoutDescriptor();
 
 
-	//virtual unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
-    //virtual unsigned long ImportDDL(GenericDSInterfaceABC *DescriptorRoot);	//sth use Descriptor node for this
+	//unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
+    //unsigned long ImportDDL(GenericDSInterfaceABC *DescriptorRoot);	//sth use Descriptor node for this
 
 	// accessor methods
 	int GetNumberOfYCoeff();

@@ -42,14 +42,14 @@ namespace XM
 
 
 
-class ScalableColorDescriptor
+class ScalableColorDescriptor final
 {
 public:
 	ScalableColorDescriptor();
-	virtual ~ScalableColorDescriptor();
+	~ScalableColorDescriptor();
 
-	//virtual unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
-	//virtual unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
+	//unsigned long ExportDDL(GenericDSInterfaceABC *aParentDescription);
+	//unsigned long ImportDDL(GenericDSInterfaceABC *aDescription);
 
 	unsigned long* GetScalableHistogram(void);
 
