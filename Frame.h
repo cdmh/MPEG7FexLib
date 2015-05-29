@@ -24,7 +24,7 @@ public:
 
 	Frame( int width, int height, bool imgFlag = true, bool grayFlag = true, bool maskFlag = true );
 	/// allocates and sets the image (this->image <= src)
-	Frame( Mat& src, bool imgFlag = true, bool grayFlag = true, bool maskFlag = true  );
+	Frame( Mat const & src, bool imgFlag = true, bool grayFlag = true, bool maskFlag = true  );
 	~Frame();
 
     // allocate this->image, this->gray, this->mask (depending on the flags)
@@ -34,7 +34,7 @@ public:
     void resize(int width, int height);
 
 	/// this->image <= src (if this->image != 0 && src != 0 )
-	void setImage( Mat& src );
+	void setImage( Mat const & src );
 	/// this->gray <= gray (if this->gray != 0 && gray != 0 )
 	void setGray( Mat& gray );
 

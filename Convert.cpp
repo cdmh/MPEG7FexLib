@@ -3,7 +3,7 @@
 
 
 // convert Mat of OpenCV to MomVop image of XM sotfware
-void Convert :: ipl2momvop(Mat& src, MomVop* dst)
+void Convert :: ipl2momvop(Mat const & src, MomVop* dst)
 {
     assert( !src.empty() );
 	assert( dst );	// none should be NULL or abort will be called
@@ -25,7 +25,7 @@ void Convert :: ipl2momvop(Mat& src, MomVop* dst)
 		{
 			for( int j = 0; j < src.cols; j++)
 			{
-				Vec3b& pbgr = src.at<Vec3b>(i,j);
+				Vec3b const & pbgr = src.at<Vec3b>(i,j);
 				index = i*src.cols + j;
 				dst->v_chan->data->u[index] = (unsigned char)pbgr[2];	// red
 				dst->y_chan->data->u[index] = (unsigned char)pbgr[1];	// green

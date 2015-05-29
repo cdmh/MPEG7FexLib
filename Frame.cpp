@@ -13,7 +13,7 @@ Frame::Frame( int width, int height, bool imgFlag, bool grayFlag, bool maskFlag)
 	this->allocate( width, height, imgFlag, grayFlag, maskFlag );
 }
 
-Frame :: Frame( Mat& src, bool imgFlag, bool grayFlag, bool maskFlag )
+Frame :: Frame( Mat const & src, bool imgFlag, bool grayFlag, bool maskFlag )
 {
     this->image = 0;
     this->gray = 0;
@@ -137,7 +137,7 @@ Frame::~Frame()
 	}
 }
 
-void Frame :: setImage( Mat& src )
+void Frame :: setImage( Mat const & src )
 {
     if(this->image && !src.empty())
         Convert::ipl2momvop( src, this->image );
