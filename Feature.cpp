@@ -28,6 +28,8 @@
 #include "Extraction/RegionShapeExtraction.h"
 
 
+using namespace cv;
+
 //============================================================================
 ///				Color Structure Descriptor
 //============================================================================

@@ -97,7 +97,7 @@ public:
 
 	// GoFGoP color descriptor (for a group of frames, such as shots) (GoFGoP)
 	// instead of this function use the GoF class defined below!
-	static XM::ScalableColorDescriptor* getGoFColorD( std::vector<Mat> frames, int numCoeff = 256, int bitPlanesDiscarded = 0 );
+	static XM::ScalableColorDescriptor* getGoFColorD( std::vector<cv::Mat> frames, int numCoeff = 256, int bitPlanesDiscarded = 0 );
 
 	// Dominant Color Descriptor (CLD)
 	// normalize: normalize values to MPEG-7 range (color:0-32, variance:0,1, weight:0-32)?
@@ -201,7 +201,7 @@ public:
 	void start( int aggregation );
 
 	// for type 1 (whole frame)
-	void addFrame1( Mat& img );
+	void addFrame1( cv::Mat& img );
 
 	// for type 2 (arbitrary region), mask should be set before calling this function
 	void addFrame2( Frame* f );

@@ -3,6 +3,8 @@
 #include "Convert.h"
 #include "Frame.h"
 
+using namespace cv;
+
 // Constructor
 Frame::Frame( int width, int height, bool imgFlag, bool grayFlag, bool maskFlag)
 {

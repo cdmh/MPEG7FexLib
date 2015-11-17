@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Convert.h"
 
+using namespace cv;
 
 // convert Mat of OpenCV to MomVop image of XM sotfware
 void Convert :: ipl2momvop(Mat const & src, MomVop* dst)

@@ -6,7 +6,7 @@ aim: decrease the memory allocation deallocation for each frame during video pro
 
 author : mb
 date: 07.07.2008
-update: 02.02.2011 (upgrade to OpenCV 2.2, Mat)
+update: 02.02.2011 (upgrade to OpenCV 2.2, cv::Mat)
 **************************************************************/
 
 #ifndef __FRAME__H__
@@ -16,15 +16,13 @@ update: 02.02.2011 (upgrade to OpenCV 2.2, Mat)
 
 #include "AddressLib/vopio.h"
 
-using namespace cv;
-
 class Frame
 {
 public:
 
 	Frame( int width, int height, bool imgFlag = true, bool grayFlag = true, bool maskFlag = true );
 	/// allocates and sets the image (this->image <= src)
-	Frame( Mat const & src, bool imgFlag = true, bool grayFlag = true, bool maskFlag = true  );
+	Frame( cv::Mat const & src, bool imgFlag = true, bool grayFlag = true, bool maskFlag = true  );
 	~Frame();
 
     // allocate this->image, this->gray, this->mask (depending on the flags)
@@ -34,12 +32,12 @@ public:
     void resize(int width, int height);
 
 	/// this->image <= src (if this->image != 0 && src != 0 )
-	void setImage( Mat const & src );
+	void setImage( cv::Mat const & src );
 	/// this->gray <= gray (if this->gray != 0 && gray != 0 )
-	void setGray( Mat& gray );
+	void setGray( cv::Mat& gray );
 
 	// set the alpha channel (mask) to the arbitrary shape
-	void setMask( Mat& mask, int rid, int fg = 255, int bg = 0 );
+	void setMask( cv::Mat& mask, int rid, int fg = 255, int bg = 0 );
 
 	// set all the values in the mask to val, and attach this mask to image and gray as their a_chan
 	// this  is required by Scalable Color Descriptor extraction!
@@ -47,11 +45,11 @@ public:
 
 	// set the alpha channel (mask) to the arbitrary shape AND point the alpha channels (a_chan) of image and gray to a_chan of mask
 	// use this to extract color and grayscale features of arbitrary shapes
-	void setMaskAll( Mat& mask, int rid, int fg = 255, int bg = 0 );
+	void setMaskAll( cv::Mat& mask, int rid, int fg = 255, int bg = 0 );
     // set the mask only for this->image
-    void setMaskImage( Mat& mask, int rid, int fg = 255, int bg = 0 );
+    void setMaskImage( cv::Mat& mask, int rid, int fg = 255, int bg = 0 );
     // set the mask only for this->gray
-    void setMaskGray( Mat& mask, int rid, int fg, int bg);
+    void setMaskGray( cv::Mat& mask, int rid, int fg, int bg);
 
 	//point a_chan of image (mask) and gray to 0 again (as initiated) - to extract feature from the whole frame
 	void resetMaskAll();
