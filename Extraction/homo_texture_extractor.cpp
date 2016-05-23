@@ -37,18 +37,17 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include <iostream>
 #include "homo_texture_extractor.h"
 
 #define SWAP(a,b) tempr=(a);(a)=(b);(b)=tempr
 
 namespace {
 
-static const int Quant_level = 255;
-static const int size        = 128;  // image size
-static const int Nray        = 128;
-static const int Nview       = 180;
-
-
+const int Quant_level = 255;
+const int size        = 128;  // image size
+const int Nray        = 128;
+const int Nview       = 180;
 
 double const Num_pixel = 180. * 64.;
 
@@ -78,6 +77,40 @@ double const dmin[5][6]={{9.052970,11.754891,11.781252,8.649997,11.674788,11.738
            {10.368594,10.196313,10.211122,10.112823,10.648101,10.801070},
            {11.737487,11.560674,11.551509,11.608201,11.897524,12.246614},
            {13.303207,13.314553,13.450340,13.605001,13.547492,13.435994}};
+
+double const ffts[9][2] = {
+    { -2.0/3.0, -2.0/3.0 },
+    { -2.0/3.0, -1.0/3.0 },
+    { -2.0/3.0, -0.0/3.0 },
+    { -1.0/3.0, -2.0/3.0 },
+    { -0.0/3.0, -2.0/3.0 },
+    { -1.0/3.0, -1.0/3.0 },
+    { -1.0/3.0, -0.0/3.0 },
+    { -0.0/3.0, -1.0/3.0 },
+    { -0.0/3.0, -0.0/3.0 }
+};
+
+double sines[9][size][size];
+double cosines[9][size][size];
+bool const calc_trig = []() -> bool {
+    for (int ndx=0; ndx<9; ++ndx)
+    {
+        int cx=-size/2;
+        int cy=-size/2;
+        double dx = ffts[ndx][0];
+        double dy = ffts[ndx][1];
+        double pix=2.*M_PI*dx/size;
+        double piy=2.*M_PI*dy/size;
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                double const theta = (i+cy)*piy+(j+cx)*pix;
+                sines[ndx][i][j]   = sin(theta);
+                cosines[ndx][i][j] = cos(theta);
+            }
+        }
+    }
+    return true;
+}();
 
 
 typedef struct {
@@ -142,8 +175,7 @@ COMPLEX operator -(COMPLEX a,COMPLEX b)
 
 double sqrt(COMPLEX a)
 {
-    using ::sqrt;
-    return sqrt(a.r*a.r+a.i*a.i);
+    return ::sqrt(a.r*a.r+a.i*a.i);
 }
 
 template <typename T>
@@ -200,8 +232,7 @@ class implementation
         double (*buf)=new double [3*180];
         double a,x,cnt;
 
-        using ::sqrt;
-        a=15./sqrt(2.*log(2.));
+        a=15. / ::sqrt(2.*log(2.));
         cnt=89.5;
 
         for(i=0;i<180;i++)
@@ -231,9 +262,8 @@ class implementation
 
         size2=Nray/2;
 
-        using ::sqrt;
         for(k=0;k<5;k++)
-            par[k]=(BW[k]/2.)/(sqrt(2.*log(2.)));
+            par[k]=(BW[k]/2.)/(::sqrt(2.*log(2.)));
 
         for(k=0;k<5;k++)
         {
@@ -302,7 +332,7 @@ class implementation
     }
 
     //-----------------------------------------------------------------------------------
-    void four1(COMPLEX *data1,int nn,int isign)
+    void four1(COMPLEX *data1,int nn)
     {
         int n,mmax,m,j,istep,i;
         double wtemp,wr,wpr,wpi,wi,theta;
@@ -330,7 +360,7 @@ class implementation
 
         while (n > mmax) {
             istep=2*mmax;
-            theta=6.28318530717959/(isign*mmax);
+            theta=-6.28318530717959/mmax;
             wtemp=sin(0.5*theta);
             wpr = -2.0*wtemp*wtemp;
             wpi=sin(theta);
@@ -355,34 +385,26 @@ class implementation
     }
 
     //-----------------------------------------------------------------------------------
-    void fft2d(COMPLEX **inimage,COMPLEX **timage,int size2,int x,int y,int inc,double dx,double dy)
+    void fft2d(COMPLEX **inimage,COMPLEX **timage,int x,int y,int inc,int ndx)
     {
         COMPLEX *ptr;
         COMPLEX  buf[2*size];
-        double pix,piy,theta;
-        int cx,cy;
-        int i,j,k;
-        cx=-size/2;
-        cy=-size/2;
-        pix=2*M_PI*dx/size2;
-        piy=2*M_PI*dy/size2;
 
-        for(i=0;i<size2;i++){
-            for(j=0;j<size2;j++){
-                theta=(i+cy)*piy+(j+cx)*pix;
-                image[i][j].r= inimage[i][j].r*cos(theta);
-                image[i][j].i= inimage[i][j].r*sin(theta);
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                image[i][j].r = inimage[i][j].r * cosines[ndx][i][j];
+                image[i][j].i = inimage[i][j].r * sines[ndx][i][j];
             }
-            four1(image[i],size2,-1);
+            four1(image[i],size);
         }
-        for(i=size/2-1;i<size2;i++){
-            for(j=0;j<size2;j++){
+        for(int i=size/2-1;i<size;i++){
+            for(int j=0;j<size;j++){
                 buf[j]=image[j][i];
             }
-            four1(buf,size2,-1);
+            four1(buf,size);
             ptr=buf;
-            k=i*inc+y;
-            for(j=x;j<size2*inc;j+=inc){
+            int k=i*inc+y;
+            for(int j=x;j<size*inc;j+=inc){
                 timage[k][j]=*ptr;
                 ptr++;
             }
@@ -451,20 +473,19 @@ class implementation
                 stdev+=(inimage[i][j].r*inimage[i][j].r);
             }
         }
-        using ::sqrt;
         dc=(dc)/(size*size);
         stdev=stdev/(size*size);
-        stdev=sqrt(stdev-(dc)*(dc));
+        stdev=::sqrt(stdev-(dc)*(dc));
 
-        fft2d(inimage,timage,size,2,2,3,-2.0/3.0,-2.0/3.0);
-        fft2d(inimage,timage,size,1,2,3,-2.0/3.0,-1.0/3.0);
-        fft2d(inimage,timage,size,0,2,3,-2.0/3.0,-0.0/3.0);
-        fft2d(inimage,timage,size,2,1,3,-1.0/3.0,-2.0/3.0);
-        fft2d(inimage,timage,size,2,0,3,-0.0/3.0,-2.0/3.0);
-        fft2d(inimage,timage,size,1,1,3,-1.0/3.0,-1.0/3.0);
-        fft2d(inimage,timage,size,0,1,3,-1.0/3.0,-0.0/3.0);
-        fft2d(inimage,timage,size,1,0,3,-0.0/3.0,-1.0/3.0);
-        fft2d(inimage,timage,size,0,0,3,-0.0/3.0,-0.0/3.0);
+        fft2d(inimage,timage,2,2,3,0);
+        fft2d(inimage,timage,1,2,3,1);
+        fft2d(inimage,timage,0,2,3,2);
+        fft2d(inimage,timage,2,1,3,3);
+        fft2d(inimage,timage,2,0,3,4);
+        fft2d(inimage,timage,1,1,3,5);
+        fft2d(inimage,timage,0,1,3,6);
+        fft2d(inimage,timage,1,0,3,7);
+        fft2d(inimage,timage,0,0,3,8);
 
         nr2=nr/2;
         size2=size*3;
@@ -549,14 +570,13 @@ class implementation
             }
         }
 
-        using ::sqrt;
         for(n=0;n<5;n++)
             for(m=0;m<6;m++)
             {
                 vec[n][m]/=Num_pixel;
                 deviation[n][m]/=Num_pixel;
                 deviation[n][m]=deviation[n][m]-vec[n][m]*vec[n][m];
-                deviation[n][m]=sqrt(deviation[n][m]);
+                deviation[n][m]=::sqrt(deviation[n][m]);
                 vec[n][m]=log(1+vec[n][m]);
                 dvec[n][m]=log(1+deviation[n][m]);
             }
