@@ -41,10 +41,12 @@
 
 #define SWAP(a,b) tempr=(a);(a)=(b);(b)=tempr
 
-#define Quant_level 255
-#define	size 128  // image size
-#define Nray 128
-#define Nview 180
+namespace {
+
+static const int Quant_level = 255;
+static const int size        = 128;  // image size
+static const int Nray        = 128;
+static const int Nview       = 180;
 
 
 
@@ -140,7 +142,25 @@ COMPLEX operator -(COMPLEX a,COMPLEX b)
 
 double sqrt(COMPLEX a)
 {
+    using ::sqrt;
     return sqrt(a.r*a.r+a.i*a.i);
+}
+
+template <typename T>
+T **create2DArray(unsigned nrows, unsigned ncols)
+{
+   T **ptr  = new T*[nrows];                        // allocate pointers
+   T  *pool = (T*)calloc(nrows*ncols, sizeof(T));   // allocate pool
+   for (unsigned i = 0; i < nrows; ++i, pool += ncols)
+       ptr[i] = pool;
+   return ptr;
+}
+
+template <typename T>
+void delete2DArray(T** arr)
+{
+   free(arr[0]);  // remove the pool
+   delete [] arr; // remove the pointers
 }
 
 
@@ -155,25 +175,18 @@ class implementation
 
     implementation()
     {
-        cin = new unsigned char [size][size];
-        fin = new double        [Nview][Nray];
-        for(int i=0;i<1024;i++){
-            timage[i]=(COMPLEX *) malloc(1024*sizeof(COMPLEX));
-        }
-        for(int i=0;i<512;i++){
-            inimage[i]=(COMPLEX *) malloc(512*sizeof(COMPLEX));
-            image[i]=(COMPLEX *) malloc(512*sizeof(COMPLEX));
-        }
+        cin     = new unsigned char [size][size];
+        fin     = new double        [Nview][Nray];
+        image   = create2DArray<COMPLEX>(512,512);
+        inimage = create2DArray<COMPLEX>(512,512);
+        timage  = create2DArray<COMPLEX>(1024,1024);
     }
 
     ~implementation()
     {
-        for(int i=0;i<1024;i++)
-            free(timage[i]);
-        for(int i=0;i<512;i++) {
-            free(inimage[i]);
-            free(image[i]);
-        }
+        delete2DArray(image);
+        delete2DArray(timage);
+        delete2DArray(inimage);
 
         delete	[]	fin;
         delete	[]	cin;
@@ -187,6 +200,7 @@ class implementation
         double (*buf)=new double [3*180];
         double a,x,cnt;
 
+        using ::sqrt;
         a=15./sqrt(2.*log(2.));
         cnt=89.5;
 
@@ -217,7 +231,7 @@ class implementation
 
         size2=Nray/2;
 
-
+        using ::sqrt;
         for(k=0;k<5;k++)
             par[k]=(BW[k]/2.)/(sqrt(2.*log(2.)));
 
@@ -246,19 +260,10 @@ class implementation
     //-----------------------------------------------------------------------------
     void module(unsigned char *imagedata, int image_height, int image_width)
     {
-        for(int i=0;i<1024;i++){
-            memset(timage[i], 0, 1024*sizeof(COMPLEX));
-        }
-        for(int i=0;i<512;i++){
-            memset(inimage[i], 0, 512*sizeof(COMPLEX));
-            memset(image[i], 0, 512*sizeof(COMPLEX));
-        }
-
         // 2000.10.11 - yjyu@samsung.com
         for(int i=0;i<size;i++)
             for(int j=0;j<size;j++)
                 cin[i][j] = imagedata[i*image_width+j];
-
 
         radon(cin,fin,Nray,Nview);
         //dc=(dc)*(dc);	// 2001.01.31 - yjyu@samsung.com
@@ -446,6 +451,7 @@ class implementation
                 stdev+=(inimage[i][j].r*inimage[i][j].r);
             }
         }
+        using ::sqrt;
         dc=(dc)/(size*size);
         stdev=stdev/(size*size);
         stdev=sqrt(stdev-(dc)*(dc));
@@ -543,6 +549,7 @@ class implementation
             }
         }
 
+        using ::sqrt;
         for(n=0;n<5;n++)
             for(m=0;m<6;m++)
             {
@@ -599,14 +606,16 @@ class implementation
     }
 
   private:
-    COMPLEX      *timage[1024];
-    COMPLEX      *inimage[512];
-    COMPLEX      *image[512];
+    COMPLEX     **timage;
+    COMPLEX     **inimage;
+    COMPLEX     **image;
     double        hdata[5][128];
     double        vdata[6][180];
     unsigned char (*cin)[size];
     double	      (*fin)[Nray];
 };
+
+}   // anonymous namespace
 
 //======================================================================================
 
